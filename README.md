@@ -170,9 +170,9 @@ Metric value for the test split (233 images):
 <img src="./sample/cityscapes_munster_2.png"   width="30%">
 </div>
 <div align="center">
-<img src="./output/cityscapes_lindau.png"   width="30%">
-<img src="./output/cityscapes_munster.png"   width="30%">
-<img src="./output/cityscapes_munster_2.png"   width="30%">
+<img src="./output/inference/cityscapes_lindau.png"   width="30%">
+<img src="./output/inference/cityscapes_munster.png"   width="30%">
+<img src="./output/inference/cityscapes_munster_2.png"   width="30%">
 </div>
 
 

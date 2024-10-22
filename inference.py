@@ -17,7 +17,7 @@ import re
 from PIL import Image
 import matplotlib.pyplot as plt
 
-ALLOWS_IMG_EXTENSION=["png","jpg","jpeg"] # acceptable file for inference on a single image
+ALLOWS_IMG_EXTENSION=["png","jpg","jpeg","JPG"] # acceptable file for inference on a single image
 ALLOWS_VIDEO_EXTENSION=["mp4"] # acceptable file for inference on a video without real-time display
 
 def pre_process_input(input,required_input_shape):

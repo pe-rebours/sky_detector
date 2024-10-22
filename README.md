@@ -130,16 +130,19 @@ To see all evaluation plots, see `output/evaluation` folder. Some qualitative re
 
 Metric value for the test split (233 images):
 <table align="center">
+
 |  Metric         | mean  | std |
 | :--------        | :-------------: | :----:   | 
 | Accuracy  | 0.996       |  0.007     | 
 | Computation time (s)  | 0.0134      |  0.0147      | 
+
 </table>
 
 
 <table>
 <tr><th>For label 'Sky' (positive class)</th><th>For label 'Other' (negative class)</th></tr>
 <tr><td>
+
 |  Metric  | mean  | std |
 | :--------        | :-------------: | :----:   | 
 | IoU  | 0.789      |  0.183     | 

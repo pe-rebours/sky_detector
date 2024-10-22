@@ -10,7 +10,7 @@ It proposes a neural based solution in order to apply semantic segmentation in o
 The follow proposition has been made for a technical test for a job opening. It has been realized on a local computer with the follow **configuration**:
 - **OS:** Windows 10
 - **CPU:** Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz   2.81 GHz
-- **GPU:** NVIDIA GeForce GTX 1060 3GB
+- **GPU:** NVIDIA GeForce GTX 1060 3GB - CUDA 12.7
 
 ## Requirements
 
@@ -18,7 +18,7 @@ The requirements are indicated into `requirements.txt`. With pip:
 ```bash
 pip install -r requirements.txt
 ```
-The follow code has been developed and test with Python 3.11.9
+The follow code has been developed and test with Python 3.11.9 and CUDA 12.7
 You can download the train model at the follow [link](https://drive.google.com/file/d/1jC3rfhn1ANDZa1LhS2PkrRz2abkB8V_k/view?usp=sharing). Then, put the file `fcn_resnet50.pt` in the `runs` folder.
 
 

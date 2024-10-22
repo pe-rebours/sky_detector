@@ -141,6 +141,8 @@ def main():
                 cap.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
 
                 flag, frame = cap.read()
+                if flag==False:
+                    break
 
                 start=time.time()
                 frame = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))

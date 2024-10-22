@@ -32,7 +32,8 @@ def main():
         device=torch.device("cpu")
     else:
        device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-
+    
+    print("Run on "+str(device.type))
     model_path = args.model_path
 
     
@@ -49,7 +50,7 @@ def main():
     print("Importing the model...")
     model = models.segmentation.fcn_resnet50(weights=models.segmentation.FCN_ResNet50_Weights.DEFAULT)#pretrained=True)
     model.classifier[4] = torch.nn.Conv2d(512, 2, kernel_size=(1, 1), stride=(1, 1)) # Change final layer to 2 classes
-    model.load_state_dict(torch.load(model_path,weights_only=True))
+    model.load_state_dict(torch.load(model_path,weights_only=True,map_location=device))
     model.to(device)
     model.eval()
     print("The model has been successfully imported.")

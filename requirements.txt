@@ -3,7 +3,10 @@ matplotlib>=3.9.2
 
 pillow>=11.0.0
 opencv-python>=4.10.0.84
-torch==2.5.0+cu124
-torchvision>=0.20.0
+
+torch --extra-index-url https://download.pytorch.org/whl/cu124
+torchvision --extra-index-url https://download.pytorch.org/whl/cu124
+torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
+
 tqdm>=4.66.5
 numpy==1.26.4

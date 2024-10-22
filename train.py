@@ -51,6 +51,7 @@ def main():
         device=torch.device("cpu")
     else:
         device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    print("Run on "+str(device.type))
 
     # Importation of the model 
     fcn = models.segmentation.fcn_resnet50(weights=models.segmentation.FCN_ResNet50_Weights.DEFAULT)#pretrained=True)

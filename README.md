@@ -162,6 +162,19 @@ Metric value for the test split (233 images):
 </td></tr> </table>
 </div>
 
+### Qualitative results on sample of Cityscapes
+
+<div align="center">
+<img src="./sample/cityscapes_lindau.png"   width="30%">
+<img src="./sample/cityscapes_munster.png"   width="30%">
+<img src="./sample/cityscapes_munster_2.png"   width="30%">
+</div>
+<div align="center">
+<img src="./output/cityscapes_lindau.png"   width="30%">
+<img src="./output/cityscapes_munster.png"   width="30%">
+<img src="./output/cityscapes_munster_2.png"   width="30%">
+</div>
+
 
 ### Qualitative results on random image (outside Cityscapes)
 

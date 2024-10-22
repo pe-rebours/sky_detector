@@ -9,7 +9,6 @@ import numpy as np
 import torch
 import torchvision.transforms.v2 as transforms
 import torchvision.models as models
-from torchmetrics import JaccardIndex
 from torch.utils.data import DataLoader
 import os
 import cv2

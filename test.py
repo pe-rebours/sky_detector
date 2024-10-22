@@ -111,7 +111,7 @@ def main():
                 +"\n"
                 +"- Accuracy: mean={} std={}\n".format(np.mean(accuracies),np.std(accuracies))
                 +"\n"
-                +"- Model's computation time (ms): mean={} std={}\n".format(np.mean(computation_times),np.std(computation_times))
+                +"- Model's computation time (s): mean={} std={}\n".format(np.mean(computation_times),np.std(computation_times))
                 +"\n"
                 +"- for label 'Sky':\n"
                 +"  > IoU : mean={} std={}\n".format(np.mean(IoU_by_label[1]),np.std(IoU_by_label[1]))
@@ -132,7 +132,7 @@ def main():
     violinplot(precision_by_label,"Precision",["Other","Sky"], filename=os.path.join(output_folder,"precision_violinplot.png"))
     violinplot(recall_by_label,"Recall",["Other","Sky"], filename=os.path.join(output_folder,"recall_violinplot.png"))
     violinplot(f1_score_by_label,"F1_score",["Other","Sky"], filename=os.path.join(output_folder,"f1_score_violinplot.png"))
-    distribution_plot(computation_times,"Computation time (ms)",filename=os.path.join(output_folder,"computation_time.png"))
+    distribution_plot(computation_times,"Computation time (s)",filename=os.path.join(output_folder,"computation_time.png"))
 
 if __name__ == '__main__':
     main()

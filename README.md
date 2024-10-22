@@ -3,6 +3,8 @@
 The follow repository contains a first approach to segment the sky from  RGB pictures.
 It proposes a neural based solution in order to apply semantic segmentation in order to separate the sky from the rest of the input picture
 
+**Authors**: Pierre-Emmanuel Rebours, pierre.emm.rebours@gmail.com
+
 ## Context
 
 The follow proposition has been made for a technical test for a job opening. It has been realised on a local machine with the follow **configuration**:
@@ -17,12 +19,12 @@ The requirements are indicated into `requirements.txt`. With pip:
 pip install -r `requirements.txt`
 ```
 The follow code has been developed and test with Python 3.11.9
-You can download the train model at the follow [link]().Then, put the file `fcn_resnet50.pt` in the `runs` folder.
+You can download the train model at the follow [link](https://drive.google.com/file/d/1jC3rfhn1ANDZa1LhS2PkrRz2abkB8V_k/view?usp=sharing). Then, put the file `fcn_resnet50.pt` in the `runs` folder.
 
 
 ## Presentation of the solution
 
-The semantic segmentation is realised with a FCN (Fully Convolutional Networks) as the one presented by []. But contrary to the article, we will use a ResNet50 backbone for the encoder part.
+The semantic segmentation is realised with a FCN (Fully Convolutional Networks) as the one presented by [1]. But contrary to the article, we will use a ResNet50 backbone for the encoder part.
 
 ### Why FCN-ResNet50 ?
 
@@ -69,7 +71,7 @@ Cityscapes can be download on the [official website](https://www.cityscapes-data
 
 ### Training process
 
-You can download the train model at the follow [link](). Then, put the file `fcn_resnet50.pt` in the `runs` folder.
+You can download the train model at the follow [link](https://drive.google.com/file/d/1jC3rfhn1ANDZa1LhS2PkrRz2abkB8V_k/view?usp=sharing). Then, put the file `fcn_resnet50.pt` in the `runs` folder.
 The model `runs/fcn_resnet50.pt` has been train on the training set for 10 epochs, with Adam optimizer, with a learning rate of 1e-05.
 It has been train with random data augmentation including color jitter (random change in brightness, contrast, saturation and hue), auto-contrast, horizontal flip, random cropping.
 The log of the training process is `log/log.txt`.
@@ -92,7 +94,7 @@ It returns, as output, metrics distribution curve and violinplot on .png files a
 To evaluate the train model given in this repository, you can execute the follow command line in the project repository:
 
 ```bash
-python test.py --model_path="runs/fcn_epoch_9.pt" --config_path="config/config.yaml"
+python test.py --model_path="runs/fcn_resnet50.pt" --config_path="config/config.yaml"
 ```
 
 The evaluation results are saved in the folder `output/evaluation`.
@@ -104,13 +106,13 @@ You can also run the code in real-time with your own camera or other video sourc
 To run inference on a sample video, you can execute the follow command line in the project repository:
 
 ```bash
-python inference.py --model_path="runs/fcn_epoch_9.pt" --config_path="config/config.yaml" --input="sample/video.mp4"
+python inference.py --model_path="runs/fcn_resnet50.pt" --config_path="config/config.yaml" --input="sample/video.mp4"
 ```
 
 To run inference on your own video source in real time, you can execute the follow command line in the project repository:
 
 ```bash
-python inference.py --model_path="runs/fcn_epoch_9.pt" --config_path="config/config.yaml" --input="your/video/source" --real_time
+python inference.py --model_path="runs/fcn_resnet50.pt" --config_path="config/config.yaml" --input="your/video/source" --real_time
 ```
 
 The source can simply be a camera index (0 for default camera), a video stream url, or a file.
@@ -118,38 +120,49 @@ The source can simply be a camera index (0 for default camera), a video stream u
 If you run the follow command in the project repository, it should process the output of your default camera in real-time:
 
 ```bash
-python inference.py --model_path="runs/fcn_epoch_9.pt" --config_path="config/config.yaml"
+python inference.py --model_path="runs/fcn_resnet50.pt" --config_path="config/config.yaml"
 ```
 
 ## Results
 
 To see all evaluation plots, see `output/evaluation` folder. Some qualitative results are shown in `output/inference`.
-`output/inference/video.mp4` is the result of the applciation of the model on a sequence of Cityscapes. The three example images does not come from the dataset (homemade).
+`output/inference/video.mp4` is the result of the applciation of the model on a sequence of Cityscapes. The three example images does not come from the dataset (home-made).
 
 Metric value for the test split (233 images):
 
-- Accuracy: mean=0.9955040600166812 std=0.00366247009424878
-
-- Model's computation time (ms): mean=0.0124 std=0.0147
-
-- for label 'Sky' (positive class):
-  > IoU : mean=0.789 std=0.183
-  > Precision : mean=0.921 std=0.085
-  > Recall : mean=0.838 std=0.187
-  > F1_score : mean=0.866 std=0.163
-
-- for label 'Other' (negative class):
-  > IoU : mean=0.995 std=0.004
-  > Precision : mean=0.997 std=0.002
-  > Recall : mean=0.998 std=0.002
-  > F1_score : mean=0.998 std=0.002
+|  Metric         | mean  | std |
+| :--------        | :-------------: | :----:   | 
+| Accuracy  | 0.996       |  0.007     | 
+| Computation time (s)  | 0.0134      |  0.0147      | 
 
 
-<p align="center">
-  <img src="./output/inference/ex_1" width="350" title="hover text">
-  <img src="./output/inference/ex_2" width="350" title="hover text">
-  <img src="./output/inference/ex_3" width="350" title="hover text">
-</p>
+|  Metric  (for label 'Sky')       | mean  | std |
+| :--------        | :-------------: | :----:   | 
+| IoU  | 0.789      |  0.183     | 
+| Precision | 0.921      |  0.085      |
+| Recall | 0.838      |  0.187      | 
+| F1_score | 0.866      |  0.163     | 
+
+|  Metric  (for label 'Other')       | mean  | std |
+| :--------        | :-------------: | :----:   | 
+| IoU  | 0.995       |  0.004     | 
+| Precision | 0.997      |  0.002      |
+| Recall | 0.998      |  0.002     | 
+| F1_score | 0.998      |  0.002     | 
+
+
+### Qualitative results on random image (outside the Cityscapes)
+
+<div align="center">
+<img src="./sample/ex_1.jpg"   width="30%">
+<img src="./sample/ex_2.jpg"   width="30%">
+<img src="./sample/ex_3.jpg"   width="30%">
+</div>
+<div align="center">
+<img src="./output/inference/ex_1.png"   width="30%">
+<img src="./output/inference/ex_2.png"   width="30%">
+<img src="./output/inference/ex_3.png"   width="30%">
+</div>
 
 
 
@@ -161,8 +174,6 @@ Then, if Cityscapes is a good dataset, it focus only on urban scenes. And so, th
 
 About the computation time, the model run fast and real-time execution is possible. But the inference code `inference.py` could be computed fastly. The problem relies in particular on memory moves between cpu and gpu. A full computaion on gpu is preferable. TensorRT could also improve computation time over PyTorch.
 
-
-**Authors**: Pierre-Emmanuel Rebours, pierre.emm.rebours@gmail.com
 
 ## Reference
 

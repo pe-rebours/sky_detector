@@ -1,0 +1,9 @@
+input_param: # shape of the model input
+  height: 256
+  width: 512
+
+learning_param:
+  lr: 1e-05
+  batch_size: 4
+  nb_epoch: 10
+  with_data_augmentation: True # data augmentation include random color jitter (brightness, contrast, saturation and hue), random auto-contrast, random cropping,random horizontal flip

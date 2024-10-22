@@ -1,0 +1,12 @@
+.vscode
+data
+cmake
+runs/runs_epoch
+
+*.cpp
+CMakeLists.txt
+*.ipynb
+inference_tensoRT.py
+*.pyc
+__pycache__
+*.pt

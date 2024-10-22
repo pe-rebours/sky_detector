@@ -16,7 +16,7 @@ The follow proposition has been made for a technical test for a job opening. It 
 
 The requirements are indicated into `requirements.txt`. With pip:
 ```bash
-pip install -r `requirements.txt`
+pip install -r requirements.txt
 ```
 The follow code has been developed and test with Python 3.11.9
 You can download the train model at the follow [link](https://drive.google.com/file/d/1jC3rfhn1ANDZa1LhS2PkrRz2abkB8V_k/view?usp=sharing). Then, put the file `fcn_resnet50.pt` in the `runs` folder.

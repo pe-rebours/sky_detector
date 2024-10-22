@@ -129,11 +129,34 @@ To see all evaluation plots, see `output/evaluation` folder. Some qualitative re
 `output/inference/video.mp4` is the result of the applciation of the model on a sequence of Cityscapes. The three example images does not come from the dataset (home-made).
 
 Metric value for the test split (233 images):
-
+<div align="center">
 |  Metric         | mean  | std |
 | :--------        | :-------------: | :----:   | 
 | Accuracy  | 0.996       |  0.007     | 
 | Computation time (s)  | 0.0134      |  0.0147      | 
+</div>
+
+
+<table>
+<tr><th>For label 'Sky' (positive class)</th><th>For label 'Other' (negative class)</th></tr>
+<tr><td>
+|  Metric  (for label 'Sky')       | mean  | std |
+| :--------        | :-------------: | :----:   | 
+| IoU  | 0.789      |  0.183     | 
+| Precision | 0.921      |  0.085      |
+| Recall | 0.838      |  0.187      | 
+| F1_score | 0.866      |  0.163     | 
+
+</td><td>
+
+|  Metric  (for label 'Other')       | mean  | std |
+| :--------        | :-------------: | :----:   | 
+| IoU  | 0.995       |  0.004     | 
+| Precision | 0.997      |  0.002      |
+| Recall | 0.998      |  0.002     | 
+| F1_score | 0.998      |  0.002     | 
+
+</td></tr> </table>
 
 
 |  Metric  (for label 'Sky')       | mean  | std |
@@ -156,7 +179,7 @@ Metric value for the test split (233 images):
 <div align="center">
 <img src="./sample/ex_1.jpg"   width="30%">
 <img src="./sample/ex_2.jpg"   width="30%">
-<img src="./sample/ex_3.jpg"   width="30%">
+<img src="./sample/ex_3.JPG"   width="30%">
 </div>
 <div align="center">
 <img src="./output/inference/ex_1.png"   width="30%">

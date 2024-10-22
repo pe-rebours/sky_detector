@@ -54,7 +54,7 @@ class BinarySemanticCityscapes(Cityscapes):
         image = Image.open(self.images[index]).convert("RGB")
 
         
-        target = Image.open(self.targets[index][0])  # type: ignore[assignment]
+        target = Image.open(self.targets[index][0])
         target=self.transform_to_binary_label(target)
 
         #If  we have transform for data augmentation that should be the same for both input and target
@@ -98,7 +98,6 @@ class SkyFinder(data.Dataset):
         'other',
         'sky',
     ])
-    #mean_bgr = np.array([104.00698793, 116.66876762, 122.67891434])
 
     def __init__(self,root, split, transform, target_transform, sync_transform=None):
         self.root=root

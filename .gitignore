@@ -4,6 +4,6 @@ cmake
 *.cpp
 CMakeLists.txt
 *.ipynb
-inference_tensoRT.py
+inference_tensorRT.py
 *.pyc
 __pycache__

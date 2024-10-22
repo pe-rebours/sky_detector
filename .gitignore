@@ -1,8 +1,5 @@
 .vscode
-data/cityscapes
-data/SkyFinder
 cmake
-runs/runs_epoch
 
 *.cpp
 CMakeLists.txt
@@ -10,4 +7,3 @@ CMakeLists.txt
 inference_tensoRT.py
 *.pyc
 __pycache__
-*.pt

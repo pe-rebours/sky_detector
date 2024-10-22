@@ -17,8 +17,8 @@ import re
 from PIL import Image
 import matplotlib.pyplot as plt
 
-ALLOWS_IMG_EXTENSION=["png","jpg","jpeg"]
-ALLOWS_VIDEO_EXTENSION=["mp4"]
+ALLOWS_IMG_EXTENSION=["png","jpg","jpeg"] # acceptable file for inference on a single image
+ALLOWS_VIDEO_EXTENSION=["mp4"] # acceptable file for inference on a video without real-time display
 
 def pre_process_input(input,required_input_shape):
     transform = transforms.Compose([
@@ -119,7 +119,6 @@ def main():
                 pred=np.array(post_process_output(pred,initial_img_size))
                 
                 frame[pred==1]=[255,0,0]
-                #cv2.imshow('Frame', np.uint8(frame))
 
                 videoWriter.write(cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
                 flag, frame = cap.read()

@@ -92,7 +92,6 @@ class SkyFinder(data.Dataset):
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
         sync_transform (callable, optional): A function/transform that transformed both input image and target with the same transformation.
-        positive_label (int): label of Cityscapes considered as the positive class (default value is 23 ("Sky")).
     """
 
     class_names = np.array([
@@ -101,19 +100,7 @@ class SkyFinder(data.Dataset):
     ])
     #mean_bgr = np.array([104.00698793, 116.66876762, 122.67891434])
 
-    def __init__(self,root, input_shape=(256,512),split="train"):
-        self.transform = transforms.Compose([
-            # you can add other transformations in this list
-            transforms.Resize(input_shape,transforms.InterpolationMode.BILINEAR),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ])
-
-        self.target_transform = transforms.Compose([
-            # you can add other transformations in this list
-            transforms.Resize(input_shape,transforms.InterpolationMode.NEAREST),
-            transforms.ToTensor(),
-        ])
+    def __init__(self,root, split, transform, target_transform, sync_transform=None):
         self.root=root
         self.split=split
         img_gt_path=[]
@@ -121,11 +108,19 @@ class SkyFinder(data.Dataset):
             for f in os.listdir(os.path.join(root,split,'img',d).replace("\\","/")):
                 img_gt_path.append([os.path.join('gt',d+".png"),os.path.join('img',d,f).replace("\\","/")])
         self.img_gt_path=np.array(img_gt_path)
+        self.transform=transform
+        self.target_transform=target_transform
+        self.sync_transform=sync_transform
 
     def __getitem__(self, index):
         path=self.img_gt_path[index]
         gt=Image.open(os.path.join(self.root,self.split,path[0]).replace("\\","/"))
         img=Image.open(os.path.join(self.root,self.split,path[1]).replace("\\","/"))
+
+        #If  we have transform for data augmentation that should be the same for both input and target
+        if self.sync_transform is not None:
+            img, gt = self.sync_transform(img, gt)
+
         return (self.target_transform(img),self.target_transform(gt))
     def __len__(self):
         return len(self.img_gt_path)

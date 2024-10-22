@@ -32,11 +32,12 @@ class Trainer(object):
         
     def train(self):
         mean_best_val_loss=np.inf
-        #criterion = torch.nn.CrossEntropyLoss() # Set loss function
 
         torch.cuda.empty_cache()
+
         criterion = torch.nn.CrossEntropyLoss()
-        log_file=os.path.join(self.log_folder,'log.txt').replace("\\","/")
+
+        log_file=os.path.join(self.log_folder,'log.txt').replace("\\","/") # File where mean training loss and validation loss values are saved at each epoch.
         for epoch in range(1,self.nb_epoch+1):
             val_losses=[]
             train_losses=[]
@@ -46,22 +47,24 @@ class Trainer(object):
             
             self.model.train()
             
+            #Training step
             for i,val in enumerate(tqdm(self.train_dataloader)):
                 img=val[0].to(self.device)
                 label=val[1].to(self.device)
                 
                 pred=self.model(img)['out']
                 label=label.reshape((label.shape[0],label.shape[2],label.shape[3]))
-                loss=criterion(pred,(label*255).long()) # Calculate cross entropy loss
+                loss=criterion(pred,(label*255).long())
                 self.optimizer.zero_grad()
                 loss.backward() # Backpropogate loss
-                self.optimizer.step() # Apply gradient descent change to weight
+                self.optimizer.step()
 
                 
                 train_losses.append(loss.item())
             with open(log_file, "a") as f:
                 print("train Loss {}".format(np.mean(train_losses)),file=f)
 
+            #validation step
             self.model.eval()
             with torch.no_grad():
                 for i,val in enumerate(tqdm(self.val_dataloader)):

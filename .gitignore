@@ -1,5 +1,6 @@
 .vscode
-data
+data/cityscapes
+data/SkyFinder
 cmake
 runs/runs_epoch
 
